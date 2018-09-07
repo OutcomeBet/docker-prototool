@@ -17,6 +17,7 @@ RUN apk --no-cache add wget \
 
 FROM frolvlad/alpine-glibc:alpine-3.8_glibc-2.28
 RUN apk --no-cache add ca-certificates make
+COPY --from=0 /usr/local/bin/prototool /usr/local/bin/
 COPY --from=0 /go/bin/* /usr/local/bin/
 COPY --from=1 /protoc/bin/* /usr/local/bin/
 COPY --from=1 /protoc/include /usr/local/include

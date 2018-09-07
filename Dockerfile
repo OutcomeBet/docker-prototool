@@ -1,11 +1,8 @@
 FROM golang:1.10.4-alpine3.8
+RUN apk --no-cache add curl git
 
 # prototool
-RUN apk --no-cache add git make \
- && mkdir -p /go/src/github.com/uber/prototool \
- && cd /go/src/github.com/uber/prototool \
- && git clone --branch v1.2.0 https://github.com/uber/prototool.git . \
- && make init install
+RUN curl -sSL https://github.com/uber/prototool/releases/download/v1.2.0/prototool-$(uname -s)-$(uname -m).tar.gz | tar -C /usr/local --strip-components 1 -xz
 
 # plugins
 RUN go get -u github.com/golang/protobuf/protoc-gen-go \

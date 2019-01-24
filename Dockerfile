@@ -1,4 +1,4 @@
-FROM golang:1.10.4-alpine3.8
+FROM golang:1.11.5-alpine3.8
 RUN apk --no-cache add curl git
 
 # prototool
